@@ -17,6 +17,7 @@ $(document).ready(function(){
 		scroll_testBottom = false;
 	}
 	function scrollingDown(){
+		$("#enter_error").animate({"opacity":"0", "padding-top":"0px", "padding-bottom":"0px", "height":"0px", "margin-top":"0px"}, 200).css({"border-top":"none"}).slideUp(0);
 		$("#main_button_box").animate({"width":"0px"}, 200).slideUp(0);
 		$("#more_box").animate({"opacity":"0"}, 500).slideUp(0);
 		$("#main").delay(200).animate({"margin-top":(-hwindow + 74) + "px"}, 400);
@@ -74,10 +75,29 @@ $(document).ready(function(){
 			$(".enter_inputs").css({"opacity":"1"});
 			if($("#reg").text() == "Sign up")
 				$("#reg").animate({"margin-top":"+=82px"}, 200);
+			$("#reg_error").animate({"opacity":"0", "padding-top":"0px", "padding-bottom":"0px", "height":"0px"}, 200).css({"border-bottom":"none"}).slideUp(0);
 		}
 		else{
 			$.post("/enter", {email:$("#enter_email").val(), password:$("#enter_password").val()}, function(result){
-				alert(result);
+				if(String(result) == "false"){
+					$("#enter_error").slideDown(0).css({"border-top":"2px solid"}).animate({"opacity":"1", "padding-top":"8px", "padding-bottom":"8px", "height":"22px", "margin-top":"-41px"}, 200);
+					$("#topic").animate({"margin-top":"-=41px"}, 200);
+				}
+				else if(result == "true"){
+					$("#enter_error").animate({"opacity":"0", "padding-top":"0px", "padding-bottom":"0px", "height":"0px", "margin-top":"0px"}, 200).css({"border-top":"none"}).slideUp(0);
+					$("#main_button_box").animate({"width":"0px"}, 200).slideUp(0);
+					$("#more_box").animate({"opacity":"0"}, 500).slideUp(0);
+					$("#main").delay(200).animate({"margin-top":(-hwindow + 74) + "px"}, 400);
+					$("#topic").delay(200).animate({"margin-top":(hwindow - 74) + "px"}, 400);
+					$("#plus_box").slideUp(0);
+					$("#main_menu").delay(400).slideDown(0);
+					$("#first_menu_block").delay(400).animate({"width":"30px"}, 150);
+					$("#second_menu_block").delay(400).animate({"width":"30px"}, 250);
+					$("#third_menu_block").delay(400).animate({"width":"30px"}, 350);
+					$("#avatar").delay(200).css({"border":"2px solid white"}).animate({"width":"28px", "height":"28px", "margin-top":"19px", "margin-left":"-=14px"}, 400);
+					$("#more_box20").load('../resources/more.jsp #usercard');
+					$("#style20").load('../resources/style/more.css');
+				}
 			});
 		}
 		if($("#reg").text() == "Continue"){
@@ -95,6 +115,9 @@ $(document).ready(function(){
 			$(".reg_inputs").css({"opacity":"1"});
 			if($("#enter").text() == "Sign in")
 				$("#reg").animate({"margin-top":"+=205px"}, 200);
+			$("#enter_error").animate({"opacity":"0", "padding-top":"0px", "padding-bottom":"0px", "height":"0px", "margin-top":"0px"}, 200).css({"border-top":"none"}).slideUp(0);
+			if($("#enter_error").css("opacity") == "1")
+				$("#topic").animate({"margin-top":"+=41px"}, 200);
 		}
 		else{
 			error_test = true;
@@ -162,8 +185,16 @@ $(document).ready(function(){
 				error_close($("#reg_password20_error"));
 			if(error_test)
 				$.post("/registration", {name:$("#reg_name").val(), surname:$("#reg_surname").val(), email:$("#reg_email").val(), password:$("#reg_password").val()}, function(result){
-					alert(result);
+					if(String(result) == "false")
+						$("#reg_error").slideDown(0).css({"border-bottom":"2px solid #ff3b3b"}).animate({"opacity":"1", "padding-top":"8px", "padding-bottom":"8px", "height":"22px"}, 200);
 				});
+		}
+		if($("#enter").text() == "Send an email"){
+			$("#enter").css({"background-color":"none", "color":"white", "border-bottom":"2px solid white"}).text("Sign in").animate({"margin-top":"-=41px"}, 200);
+			$("#enter_password").slideDown(0);
+			$("#enter_inputs_box").animate({"height":"0px"}, 200).slideUp(0);
+			$(".enter_inputs").css({"opacity":"0"});
+			$("#reg").css({"margin-top":"+=2px"}).animate({"margin-top":"+=164px"}, 200);
 		}
 		if($("#enter").text() == "Continue"){
 			$("#enter").css({"background-color":"none", "color":"white", "border-bottom":"2px solid white"}).text("Sign in").animate({"margin-top":"-=82px"}, 200);
@@ -175,13 +206,13 @@ $(document).ready(function(){
 			$("#reg").animate({"margin-top":"+=205px"}, 200);
 	});
 	$(".main_buttons").mouseenter(function(){
-		if($(this).text() == "Continue")
+		if($(this).text() == "Continue" || $(this).text() == "Send an email")
 			$(this).css({"background-color":"#e7e7e7"});
 		else
 			$(this).css({"background-color":"rgba(180, 180, 180, 0.4)"});
 	});
 	$(".main_buttons").mouseout(function(){
-		if($(this).text() == "Continue")
+		if($(this).text() == "Continue" || $(this).text() == "Send an email")
 			$(this).css({"background-color":"#ffffff"});
 		else
 			$(this).css({"background-color":"none"});
@@ -215,5 +246,38 @@ $(document).ready(function(){
 	});
 	$("#reg_password20_error").mouseout(function(){
 		$("#error_more_password20").animate({"margin-left":"353px", "opacity":"0"}, 200).slideUp(0);
+	});
+	$("#enter_error").mouseenter(function(){
+		if($(this).text() == "Forgot your password?")
+			$(this).css({"text-decoration":"underline"});
+	});
+	$("#enter_error").mouseout(function(){
+		$(this).css({"text-decoration":"none"});
+	});
+	$("#enter_error").click(function(){
+		if($(this).text() == "Forgot your password?"){
+			$("#enter_inputs_box").animate({"height":"41px"}, 200);
+			$("#enter_password").delay(200).slideUp(0);
+			$("#enter, #reg").animate({"margin-top":"-=41px"}, 200);
+			$("#enter_error").animate({"padding-left":"327px", "width":"0px"}, 200).css({"cursor":"default", "text-decoration":"none"});
+			$("#enter").animate({"padding-left":"335px", "width":"0px"}, 200);
+			setTimeout(function(){
+				$("#enter_error").text("Enter your email").animate({"padding-left":"8px", "width":"319px"}, 200);
+				$("#enter").text("Send an email").animate({"padding-left":"0px", "width":"335px"}, 200);
+			}, 200);
+			$("#enter_error_back").slideDown(0).animate({"opacity":"1"}, 400);
+		}
+	});
+	$("#enter_error_back").click(function(){
+		$("#enter_inputs_box").animate({"height":"82px"}, 200);
+		$("#enter_password").slideDown(0);
+		$("#enter, #reg").animate({"margin-top":"+=41px"}, 200);
+		$("#enter_error").animate({"padding-left":"327px", "width":"0px"}, 200).css({"cursor":"pointer"});
+		$("#enter").animate({"padding-left":"335px", "width":"0px"}, 200);
+		setTimeout(function(){
+			$("#enter_error").text("Forgot your password?").animate({"padding-left":"8px", "width":"319px"}, 200);
+			$("#enter").text("Continue").animate({"padding-left":"0px", "width":"335px"}, 200);
+		}, 200);
+		$("#enter_error_back").animate({"opacity":"0"}, 400).slideUp(0);
 	});
 });

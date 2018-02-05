@@ -47,6 +47,7 @@ body{
 }
 #enter{
 	border-bottom:2px solid white;
+	height:24px;
 }
 #reg{
 	margin-top:42px;
@@ -57,6 +58,7 @@ body{
 	width:335px;
 	height:0px;
 	background-color:white;
+	display:none;
 }
 #reg_inputs_box{
 	margin-top:42px;
@@ -64,6 +66,7 @@ body{
 	width:335px;
 	height:0px;
 	background-color:white;
+	display:none;
 }
 .enter_inputs{
 	position:relative;
@@ -183,4 +186,98 @@ body{
 }
 #error_more_password20{
 	margin-top:170px;
+}
+#reg_error{
+	position:absolute;
+	width:319px;
+	font-size:18px;
+	font-family:'RobotoRegular';
+	padding:8px;
+	padding-top:0px;
+	padding-bottom:0px;
+	display:none;
+	opacity:0;
+	color:#ff3b3b;
+	background-color:white;
+	text-align:center;
+	margin-top:288px;
+	height:0px;
+}
+#enter_error{
+	position:absolute;
+	width:319px;
+	font-size:18px;
+	font-family:'RobotoRegular';
+	padding:8px;
+	padding-top:0px;
+	padding-bottom:0px;
+	display:block;
+	opacity:0;
+	color:#ff3b3b;
+	background-color:white;
+	text-align:center;
+	margin-top:0px;
+	height:0px;
+	cursor:pointer;
+}
+#enter_error_back{
+	position:absolute;
+	background-image:url("../img/arrow_left.png");
+	width:27px;
+	height:27px;
+	margin-top:-33px;
+	margin-left:8px;
+	background-size:19px;
+	background-position:center;
+	background-repeat:no-repeat;
+	cursor:pointer;
+	border-radius:13px;
+	opacity:0;
+	display:none;
+}
+#enter_error_back:hover{
+	background-color:rgba(255, 59, 59, .2)
+}
+#more_box20{
+	position:absolute;
+	width:800px;
+	height:250px;
+	margin-left:calc(50% - 400px);
+	margin-top:82px;
+}
+#main_menu{
+	position:absolute;
+	width:30px;
+	height:30px;
+	margin-left:calc(50% - 400px);
+	z-index:1000;
+	margin-top:19px;
+	cursor:pointer;
+	display:none;
+}
+.menu_blocks{
+	position:absolute;
+	width:0px;
+	height:5px;
+	background-color:white;
+}
+#second_menu_block{
+	margin-top:12px;
+}
+#third_menu_block{
+	margin-top:24px;
+}
+#avatar{
+	position:absolute;
+	width:0px;
+	height:0px;
+	margin-left:calc(50% + 384px);
+	z-index:1000;
+	margin-top:33px;
+	cursor:pointer;
+	background-image:url("../img/avatars/1.jpg");
+	background-position:center;
+	background-size:cover;
+	border:none;
+	border-radius:28px;
 }
