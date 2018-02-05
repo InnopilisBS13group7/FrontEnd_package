@@ -97,6 +97,8 @@ $(document).ready(function(){
 					$("#avatar").delay(200).css({"border":"2px solid white"}).animate({"width":"28px", "height":"28px", "margin-top":"19px", "margin-left":"-=14px"}, 400);
 					$("#more_box20").load('../resources/more.jsp #usercard');
 					$("#style20").load('../resources/style/more.css');
+					$("#takeit").text(result);
+					$.getScript('../resources/scripts/more.js');
 				}
 			});
 		}
