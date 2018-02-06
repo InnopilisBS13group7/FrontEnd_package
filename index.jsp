@@ -78,7 +78,6 @@
             <div class="menu_blocks" id="third_menu_block"></div>
         </div>
         <div id="avatar"></div>
-        <p id="takeit"></p>
     <!-- /container -->
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>--%>
     <%--<script src="${contextPath}/resources/js/bootstrap.min.js"></script>--%>

@@ -16,6 +16,37 @@ $(document).ready(function(){
 		scroll_testTop = true;
 		scroll_testBottom = false;
 	}
+	function stop(stop){
+		clearInterval(stop);
+	}
+	function rotate(object, time, angle){
+		var deg = 0;
+		var step = angle / (time / 10)
+		var interval = setInterval(function(){
+			deg += step;
+			object.css({"transform":"rotate(" + deg + "deg)"});
+		}, 10);
+		setTimeout(function(){
+			stop(interval);
+		}, time);
+	}
+	function enter(name){
+		$("#enter_error").animate({"opacity":"0", "padding-top":"0px", "padding-bottom":"0px", "height":"0px", "margin-top":"0px"}, 200).css({"border-top":"none"}).slideUp(0);
+		$("#main_button_box").animate({"width":"0px"}, 200).slideUp(0);
+		$("#more_box").animate({"opacity":"0"}, 500).slideUp(0);
+		$("#main").delay(200).animate({"margin-top":(-hwindow + 74) + "px"}, 400);
+		$("#topic").delay(200).animate({"margin-top":(hwindow - 74) + "px"}, 400);
+		$("#plus_box").slideUp(0);
+		$("#main_menu").delay(400).slideDown(0);
+		$("#first_menu_block").delay(400).animate({"width":"30px"}, 150);
+		$("#second_menu_block").delay(400).animate({"width":"30px"}, 250);
+		$("#third_menu_block").delay(400).animate({"width":"30px"}, 350);
+		$("#avatar").delay(200).css({"border":"2px solid white"}).animate({"width":"28px", "height":"28px", "margin-top":"19px", "margin-left":"-=14px"}, 400);
+		link = '../resources/more.jsp?name=Ilia%20Pro #usercard'
+		$("#more_box20").load(link);
+		$("#style20").load('../resources/style/more.css');
+		$.getScript('../resources/scripts/more.js');
+	}
 	function scrollingDown(){
 		$("#enter_error").animate({"opacity":"0", "padding-top":"0px", "padding-bottom":"0px", "height":"0px", "margin-top":"0px"}, 200).css({"border-top":"none"}).slideUp(0);
 		$("#main_button_box").animate({"width":"0px"}, 200).slideUp(0);
@@ -83,23 +114,8 @@ $(document).ready(function(){
 					$("#enter_error").slideDown(0).css({"border-top":"2px solid"}).animate({"opacity":"1", "padding-top":"8px", "padding-bottom":"8px", "height":"22px", "margin-top":"-41px"}, 200);
 					$("#topic").animate({"margin-top":"-=41px"}, 200);
 				}
-				else if(result == "true"){
-					$("#enter_error").animate({"opacity":"0", "padding-top":"0px", "padding-bottom":"0px", "height":"0px", "margin-top":"0px"}, 200).css({"border-top":"none"}).slideUp(0);
-					$("#main_button_box").animate({"width":"0px"}, 200).slideUp(0);
-					$("#more_box").animate({"opacity":"0"}, 500).slideUp(0);
-					$("#main").delay(200).animate({"margin-top":(-hwindow + 74) + "px"}, 400);
-					$("#topic").delay(200).animate({"margin-top":(hwindow - 74) + "px"}, 400);
-					$("#plus_box").slideUp(0);
-					$("#main_menu").delay(400).slideDown(0);
-					$("#first_menu_block").delay(400).animate({"width":"30px"}, 150);
-					$("#second_menu_block").delay(400).animate({"width":"30px"}, 250);
-					$("#third_menu_block").delay(400).animate({"width":"30px"}, 350);
-					$("#avatar").delay(200).css({"border":"2px solid white"}).animate({"width":"28px", "height":"28px", "margin-top":"19px", "margin-left":"-=14px"}, 400);
-					$("#more_box20").load('../resources/more.jsp #usercard');
-					$("#style20").load('../resources/style/more.css');
-					$("#takeit").text(result);
-					$.getScript('../resources/scripts/more.js');
-				}
+				else
+					enter(result);
 			});
 		}
 		if($("#reg").text() == "Continue"){
@@ -189,6 +205,8 @@ $(document).ready(function(){
 				$.post("/registration", {name:$("#reg_name").val(), surname:$("#reg_surname").val(), email:$("#reg_email").val(), password:$("#reg_password").val()}, function(result){
 					if(String(result) == "false")
 						$("#reg_error").slideDown(0).css({"border-bottom":"2px solid #ff3b3b"}).animate({"opacity":"1", "padding-top":"8px", "padding-bottom":"8px", "height":"22px"}, 200);
+					else
+						enter(result);
 				});
 		}
 		if($("#enter").text() == "Send an email"){
@@ -281,5 +299,13 @@ $(document).ready(function(){
 			$("#enter").text("Continue").animate({"padding-left":"0px", "width":"335px"}, 200);
 		}, 200);
 		$("#enter_error_back").animate({"opacity":"0"}, 400).slideUp(0);
+	});
+	$("#main_menu").click(function(){
+		$("#first_menu_block, #third_menu_block").animate({"margin-top":"12px"}, 100);
+		rotate($("#first_menu_block"), 100, 45);
+		rotate($("#second_menu_block"), 100, 45);
+		rotate($("#third_menu_block"), 300, 135);
+		$("#main").animate({"margin-top":"+=100px"}, 300);
+		$("#topic").animate({"margin-top":"-=100px"}, 300);
 	});
 });

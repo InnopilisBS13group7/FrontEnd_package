@@ -23,6 +23,7 @@
 	background-color:white;
 }
 #name{
+	position:absolute;
 	font-family:'RobotoRegular';
 	font-size:25px;
 	margin-top:0px;

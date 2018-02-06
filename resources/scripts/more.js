@@ -1,3 +1,3 @@
 $(document).ready(function(){
-	$("#name").text($("#takeit").text());
+	//$("#name").text($("#takeit").text());
 });

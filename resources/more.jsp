@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="name" value="${pageContext.request.getParameter('name')}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
         <div id="usercard">
             <div id="usercard_avatar" class="blocks"></div>
             <div class="blocks" id="usercard_info">
-                <p id="name">Ilia Prokopev</p>
+                <p id="name">${name}</p>
                 <p id="settings_bottom">Settings</p>
                 <p class="usercard_info_text1" style="margin-top:-8px">Status:</p>
                 <p class="usercard_info_text1" style="margin-top:22px">fine:</p>
