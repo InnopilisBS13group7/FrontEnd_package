@@ -5,7 +5,7 @@
 <c:set var="name" value="${pageContext.request.getParameter('name')}"/>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <link href="${contextPath}/resources/style/more.css" rel="stylesheet">
     <body>
         <div id="usercard">

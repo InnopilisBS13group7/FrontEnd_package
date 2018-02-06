@@ -4,7 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <%--<meta http-equiv="X-UA-Compatible" content="IE=edge">--%>
@@ -78,6 +78,7 @@
             <div class="menu_blocks" id="third_menu_block"></div>
         </div>
         <div id="avatar"></div>
+        <div class="menu_points" id="booking_system">Booking</div>
     <!-- /container -->
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>--%>
     <%--<script src="${contextPath}/resources/js/bootstrap.min.js"></script>--%>
